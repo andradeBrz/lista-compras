@@ -1,32 +1,75 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <NavBar @toggleSideBar="toggleSideBar"/>
+    <SidebarMenu :visible="sidebarOpen"/>
+    <div class="main-content" :class="{'menu-open': sidebarOpen}">
+        <router-view></router-view>
     </div>
-    <router-view/>
   </div>
 </template>
+
+<script>
+import SidebarMenu from './components/SidebarMenu.vue';
+import NavBar from './components/NavBar.vue';
+export default {
+    components: {SidebarMenu, NavBar},
+    data(){
+      return{
+        sidebarOpen: true
+      }
+    },
+    methods: {
+      toggleSideBar: function(){
+          this.sidebarOpen = !this.sidebarOpen;
+      }
+    }
+}
+</script>
 
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+.main-content{
+  padding: 20px;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.main-content:not(.menu-open){
+  animation: slide-out 0.6s forwards;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.menu-open{
+  animation: slide-in 0.6s forwards;
 }
+
+@keyframes slide-in {
+    100% { 
+      width: calc(100vw - 300px);
+      margin-left: 300px;
+    }
+}
+
+@-webkit-keyframes slide-in {
+    100% { -webkit-transform: translateX(0%); }
+}
+    
+@keyframes slide-out {
+    0% { 
+      width: calc(100vw - 300px);
+      margin-left: 300px;
+    }
+    100% {
+      width: 100vw;
+      margin-left: 0px;
+    }
+}
+
+@-webkit-keyframes slide-out {
+    0% { -webkit-transform: translateX(0%); }
+    100% { -webkit-transform: translateX(-100%); }
+}
+
 </style>
