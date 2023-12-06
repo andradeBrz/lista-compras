@@ -76,10 +76,14 @@ export default {
   },
   computed: {
     formatedItems: function(){
+      let moneyFormater = new Intl.NumberFormat('pt-BR', {
+          style: 'currency',
+          currency: 'BRL',
+      });
       return this.items.map(item => {return {
         ...item,
-        price: 'R$ ' + (item.price ? item.price.toString().replace(".", ",") : "--"),
-        averagePrice: 'R$ ' + (item.averagePrice ? item.averagePrice.toString().replace(".", ",") : "--"),
+        price: item.price ? moneyFormater.format(item.price) : "--",
+        averagePrice: item.averagePrice ? moneyFormater.format(item.averagePrice) : "--",
         type: this.types[item.type],
         _rowVariant: this.getRowVariant(item)
       }})

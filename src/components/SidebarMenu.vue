@@ -3,14 +3,14 @@
       <b-sidebar v-model="isVisible" id="sidebar-border" sidebar-class="border-right" no-header>
         <div class="links">
             <div class="link">
-                <div @click="goTo('ShoppingList')">ShoppingList</div>
+                <div @click="goTo('ShoppingList')">Listas</div>
             </div>
-            <div class="link">
+            <!-- <div class="link">
                 <div @click="goTo('Historic')">Historic</div>
             </div>
             <div class="link">
                 <div @click="goTo('Graphs')">Graphs</div>
-            </div>
+            </div> -->
         </div>
       </b-sidebar>
     </div>

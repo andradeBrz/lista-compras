@@ -35,6 +35,8 @@ export default {
 
 .main-content{
   padding: 20px;
+  height: calc(100vh - 60px);
+    overflow: auto;
 }
 
 .main-content:not(.menu-open){

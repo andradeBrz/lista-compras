@@ -5,7 +5,7 @@ Vue.use(VueRouter)
 
 const routes = [
       {
-        path: '/shoppingList',
+        path: '/',
         name: 'ShoppingList',
         component: () => import( '../views/ShoppingList.vue')
       },
